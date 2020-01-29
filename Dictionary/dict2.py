@@ -16,10 +16,11 @@ def word_finder(word):
             return output
         elif len(get_close_matches(word, data.keys(), cutoff=0.7)) > 0:
             user_option = input("Did you mean %s instead? Enter [Y] for yes, [N] for no: " % get_close_matches(word, data.keys(), cutoff=0.8)[0])
+            user_option = user_option.lower()
             new_word = get_close_matches(word, data.keys(), cutoff=0.8)[0]
-            if user_option == "Y":
+            if user_option in ["y","yes"]:
                 return word_finder(new_word)
-            elif user_option == "N":
+            elif user_option in ["n","no"]:
                 return "Word does not exist. Please double check."
         else:
             return "Word does not exist. Please double check."
